@@ -154,14 +154,17 @@ RUN pip3 install torch torchvision torchaudio -f https://download.pytorch.org/wh
 
 # Install Oracle Database drivers
 # Note: You'll need to replace the URL with the appropriate version of the Oracle Instant Client for your environment
+# Install Oracle Database drivers
+# Note: You'll need to replace the URL with the appropriate version of the Oracle Instant Client for your environment
 RUN mkdir -p /opt/oracle && \
     wget https://download.oracle.com/otn_software/linux/instantclient/211000/instantclient-basic-linux.x64-21.1.0.0.0.zip -O /opt/oracle/instantclient-basic-linux.x64-21.1.0.0.0.zip && \
     unzip /opt/oracle/instantclient-basic-linux.x64-21.1.0.0.0.zip -d /opt/oracle/ && \
     rm /opt/oracle/instantclient-basic-linux.x64-21.1.0.0.0.zip && \
-    ln -s /opt/oracle/instantclient_21_1/libclntsh.so.21.1 /usr/lib/libclntsh.so && \
-    ln -s /opt/oracle/instantclient_21_1/lib* /usr/lib/ && \
-    ln -s /opt/oracle/instantclient_21_1/sqlplus /usr/bin/sqlplus && \
+    ln -sf /opt/oracle/instantclient_21_1/libclntsh.so.21.1 /usr/lib/libclntsh.so && \
+    ln -sf /opt/oracle/instantclient_21_1/lib* /usr/lib/ && \
+    ln -sf /opt/oracle/instantclient_21_1/sqlplus /usr/bin/sqlplus && \
     pip3 install cx_Oracle
+
 
 # Install psutil
 RUN pip3 install psutil
