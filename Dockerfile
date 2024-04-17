@@ -46,6 +46,18 @@ RUN apk --no-cache add \
     apache-arrow-dev
 
 
+# Clone Arrow repository
+RUN git clone https://github.com/apache/arrow.git /tmp/arrow
+
+# Build and install Arrow
+RUN mkdir -p /tmp/arrow/cpp/build \
+    && cd /tmp/arrow/cpp/build \
+    && cmake -DCMAKE_INSTALL_PREFIX=/usr/local .. \
+    && make -j$(nproc) \
+    && make install
+
+# Clean up
+RUN rm -rf /tmp/arrow
 
 
 RUN python3 -m venv /opt/venv
