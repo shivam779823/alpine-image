@@ -165,7 +165,7 @@ RUN mkdir -p /opt/oracle && \
     ln -sf /opt/oracle/instantclient_21_1/sqlplus /usr/bin/sqlplus && \
     pip3 install cx_Oracle
 
-
+RUN pip install darts pandas-gbq db-dtypes
 # Install psutil
 RUN pip3 install psutil
 
