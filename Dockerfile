@@ -20,7 +20,7 @@ RUN pip3 install --no-cache-dir \
     pillow
 COPY ./requirements.txt .
 
-RUN pip3 install -r repository.txt
+RUN pip3 install -r requirements.txt
 # Create a non-root user
 RUN adduser -D jupyter
 
