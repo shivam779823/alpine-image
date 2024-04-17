@@ -51,7 +51,10 @@ RUN pip3 install notebook
 # Install Python dependencies
 RUN pip3 install --no-cache-dir \
     numpy==1.23.2 \
-    scipy==1.9.3
+    scipy==1.9.3 \
+    pyarrow \
+    pillow
+
 RUN pip install darts pandas-gbq db-dtypes
 RUN pip3 install torch torchvision torchaudio -f https://download.pytorch.org/whl/torch_stable.html
 # Install PyTorch (CPU version)

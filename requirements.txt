@@ -1,23 +1,72 @@
-oauthenticator
-sqlalchemy
-configurable-http-proxy
-setuptools
-wheel
-jupyterhub-idle-culler
-jupyter_server
-notebook
-tornado
-pycurl
-pyjwt
-mwoauth
-jupyterhub-dummyauthenticator
-globus_sdk[jwt]
-jupyterhub-kubespawner
-kubernetes
-setuptools
-Twisted
-Django
-lxml
-PyJWT
+jupyter-server
+pyarrow
+pillow
+pandas
+google
+google-cloud
+google-cloud-bigquery
+google-cloud-bigquery-storage
+google-cloud-secret-manager #==2.0.0
+db-dtypes
+oracledb
+watchdog
+google-cloud-logging
+saspy
+GitPython
+pandas-gbo
+toml
+gcsts
+torch
+scrapy
+pydantic
+plotly
+darts
+attrdict
+datasketch
+pypdf
+reportlab
+atlassian-python-api
+pillow
+idna
 cryptography
-ruamel.yaml
+aiohttp
+grpcio
+jupyter-Isp
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# oauthenticator
+# sqlalchemy
+# configurable-http-proxy
+# setuptools
+# wheel
+# jupyterhub-idle-culler
+# jupyter_server
+# notebook
+# tornado
+# pycurl
+# pyjwt
+# mwoauth
+# jupyterhub-dummyauthenticator
+# globus_sdk[jwt]
+# jupyterhub-kubespawner
+# kubernetes
+# setuptools
+# Twisted
+# Django
+# lxml
+# PyJWT
+# cryptography
+# ruamel.yaml
