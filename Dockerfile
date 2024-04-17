@@ -21,6 +21,11 @@ RUN pip3 install --no-cache-dir \
 # Create a non-root user
 RUN adduser -D jupyter
 
+
+# Create sudoers directory and set permissions
+RUN mkdir -p /etc/sudoers.d \
+    && chmod 750 /etc/sudoers.d
+
 # Set up sudo for the non-root user
 RUN echo "jupyter ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/jupyter
 
