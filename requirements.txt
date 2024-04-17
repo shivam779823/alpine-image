@@ -15,7 +15,6 @@ saspy
 GitPython
 pandas-gbq
 toml
-gcsts
 torch
 scrapy
 pydantic
