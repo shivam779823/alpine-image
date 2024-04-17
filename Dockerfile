@@ -41,6 +41,10 @@ RUN apk --no-cache add \
     libpng-dev \
     cmake
 
+# Install Arrow dependencies
+RUN apk --no-cache add \
+    apache-arrow-dev
+
 
 
 
