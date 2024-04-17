@@ -13,7 +13,7 @@ watchdog
 google-cloud-logging
 saspy
 GitPython
-pandas-gbo
+pandas-gbq
 toml
 gcsts
 torch
