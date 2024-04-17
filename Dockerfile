@@ -1,103 +1,26 @@
 
 # Use Alpine Linux 3.19.1 as the base image
-FROM alpine:3.19.1
-
-# Install system dependencies
-# RUN apk --no-cache add \
-#     bash \
-#     nodejs \
-#     npm \
-#     git \
-#     openssl \
-#     sudo \
-#     build-base \
-#     python3-dev \
-#     py3-pip \
-#     libffi-dev \
-#     openssl-dev \
-#     musl-dev \
-#     linux-headers \
-#     libaio
+FROM cgr.dev/chainguard/wolfi-base
 
 
 RUN apk --no-cache add \
-    g++ \
-    gcc \
-    gfortran \
-    musl-dev \
-    lapack-dev \
-    gfortran \
-    openblas-dev \
+    python3 \
     python3-dev \
     py3-pip \
-    build-base \
-    libffi-dev \
-    openssl-dev \
-    libxml2-dev \
-    libxslt-dev \
-    libjpeg-turbo-dev \
-    zlib-dev \
-    freetype-dev \
-    libpng-dev \
-    cmake \
     git 
 
-# Install Arrow dependencies
-RUN apk --no-cache add \
-    apache-arrow-dev
-
-
-# Clone Arrow repository
-RUN git clone https://github.com/apache/arrow.git /tmp/arrow
-
-# Build and install Arrow
-RUN mkdir -p /tmp/arrow/cpp/build \
-    && cd /tmp/arrow/cpp/build \
-    && cmake -DCMAKE_INSTALL_PREFIX=/usr/local .. \
-    && make -j$(nproc) \
-    && make install
-
-# Clean up
-RUN rm -rf /tmp/arrow
-
-
-RUN python3 -m venv /opt/venv
-ENV PATH="/opt/venv/bin:$PATH"
-
 # Install Jupyter Notebook
-RUN pip3 install notebook 
+RUN pip3 install notebook jupyterlab
 
 # Install Python dependencies
 RUN pip3 install --no-cache-dir \
-    numpy==1.23.2 \
-    scipy==1.9.3 \
+    numpy \
+    scipy \
     pyarrow \
     pillow
+COPY ./requirements.txt .
 
-RUN pip3 install db-dtypes 
-RUN pip3 install darts 
-RUN pip3 install pandas-gbq 
-RUN pip3 install torch torchvision torchaudio -f https://download.pytorch.org/whl/torch_stable.html
-# Install PyTorch (CPU version)
-#RUN pip3 install torch==1.10.0+cpu torchvision==0.11.1+cpu torchaudio==0.10.0+cpu -f https://download.pytorch.org/whl/torch_stable.html
-
-# Install Oracle Database drivers
-# Note: You'll need to replace the URL with the appropriate version of the Oracle Instant Client for your environment
-# Install Oracle Database drivers
-# Note: You'll need to replace the URL with the appropriate version of the Oracle Instant Client for your environment
-RUN mkdir -p /opt/oracle && \
-    wget https://download.oracle.com/otn_software/linux/instantclient/211000/instantclient-basic-linux.x64-21.1.0.0.0.zip -O /opt/oracle/instantclient-basic-linux.x64-21.1.0.0.0.zip && \
-    unzip /opt/oracle/instantclient-basic-linux.x64-21.1.0.0.0.zip -d /opt/oracle/ && \
-    rm /opt/oracle/instantclient-basic-linux.x64-21.1.0.0.0.zip && \
-    ln -sf /opt/oracle/instantclient_21_1/libclntsh.so.21.1 /usr/lib/libclntsh.so && \
-    ln -sf /opt/oracle/instantclient_21_1/lib* /usr/lib/ && \
-    ln -sf /opt/oracle/instantclient_21_1/sqlplus /usr/bin/sqlplus && \
-    pip3 install cx_Oracle
-
-
-# Install psutil
-RUN pip3 install psutil
-
+RUN pip3 install -r repository.txt
 # Create a non-root user
 RUN adduser -D jupyter
 
