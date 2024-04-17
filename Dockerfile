@@ -20,9 +20,6 @@ FROM alpine:3.19.1
 #     libaio
 
 
-
-
-
 RUN apk --no-cache add \
     g++ \
     gcc \
@@ -41,7 +38,8 @@ RUN apk --no-cache add \
     libjpeg-turbo-dev \
     zlib-dev \
     freetype-dev \
-    libpng-dev
+    libpng-dev \
+    cmake
 
 
 
