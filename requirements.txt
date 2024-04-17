@@ -30,7 +30,7 @@ idna
 cryptography
 aiohttp
 grpcio
-jupyter-Isp
+# jupyter-Isp
 
 
 

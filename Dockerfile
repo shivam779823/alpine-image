@@ -1,7 +1,4 @@
-
-# Use Alpine Linux 3.19.1 as the base image
 FROM cgr.dev/chainguard/wolfi-base
-
 
 RUN apk --no-cache add \
     python3 \
@@ -9,18 +6,18 @@ RUN apk --no-cache add \
     py3-pip \
     git 
 
-# Install Jupyter Notebook
-RUN pip3 install notebook jupyterlab
-
-# Install Python dependencies
+# Install Jupyter Notebook and Python dependencies
+COPY ./requirements.txt /tmp/requirements.txt
 RUN pip3 install --no-cache-dir \
+    notebook \
+    jupyterlab \
     numpy \
     scipy \
     pyarrow \
-    pillow
-COPY ./requirements.txt .
+    pillow \
+    -r /tmp/requirements.txt \
+    && rm /tmp/requirements.txt
 
-RUN pip3 install -r requirements.txt
 # Create a non-root user
 RUN adduser -D jupyter
 
@@ -38,6 +35,7 @@ EXPOSE 8888
 
 # Start Jupyter Notebook
 CMD ["jupyter", "notebook", "--ip=0.0.0.0", "--port=8888", "--allow-root"]
+
 
 
 
