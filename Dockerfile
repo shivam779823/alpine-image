@@ -21,6 +21,8 @@ FROM alpine:3.19.1
 
 
 
+
+
 RUN apk --no-cache add \
     g++ \
     gcc \
@@ -42,6 +44,8 @@ RUN apk --no-cache add \
     libpng-dev
 
 
+
+
 RUN python3 -m venv /opt/venv
 ENV PATH="/opt/venv/bin:$PATH"
 
@@ -55,7 +59,9 @@ RUN pip3 install --no-cache-dir \
     pyarrow \
     pillow
 
-RUN pip install darts pandas-gbq db-dtypes
+RUN pip3 install db-dtypes 
+RUN pip3 install darts 
+RUN pip3 install pandas-gbq 
 RUN pip3 install torch torchvision torchaudio -f https://download.pytorch.org/whl/torch_stable.html
 # Install PyTorch (CPU version)
 #RUN pip3 install torch==1.10.0+cpu torchvision==0.11.1+cpu torchaudio==0.10.0+cpu -f https://download.pytorch.org/whl/torch_stable.html
