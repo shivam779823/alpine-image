@@ -40,7 +40,7 @@ RUN apk --no-cache add \
     freetype-dev \
     libpng-dev \
     cmake \
-    git \
+    git 
 
 # Install Arrow dependencies
 RUN apk --no-cache add \
