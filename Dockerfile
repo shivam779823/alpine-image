@@ -7,7 +7,8 @@ RUN apk --no-cache add \
     py3-pip \
     git \
     bash \
-    npm
+    npm \
+    curl
 
 
     
