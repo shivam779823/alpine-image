@@ -1,36 +1,63 @@
 FROM cgr.dev/chainguard/wolfi-base
 
+USER root
 RUN apk --no-cache add \
     python3 \
     python3-dev \
     py3-pip \
-    git 
+    git \
+    bash \
+    npm
 
+
+RUN locale-gen de_DE.UTF-8 && \ 
+    update-locale
+    
 # Install Jupyter Notebook and Python dependencies
-COPY ./requirements.txt /tmp/requirements.txt
+
 RUN pip3 install --no-cache-dir \
     notebook \
     jupyterlab \
-    numpy \
-    scipy \
-    pyarrow \
-    pillow \
-    -r /tmp/requirements.txt \
-    && rm /tmp/requirements.txt
+    && adduser -D jovyan
+    # -r /tmp/requirements.txt \
+    # && rm /tmp/requirements.txt
 
-# Create a non-root user
-RUN adduser -D jupyter
+RUN mkdir -p /usr/share/java/ && \
+    curl https://dlcdn.apache.org/pdfbox/3.0.1/pdfbox-3.0.1.jar -o /usr/share/java/pdfbox.jar && \
+    curl https://dlcdn.apache.org/pdfbox/3.0.1/fontbox-3.0.1.jar -o /usr/share/java/fontbox.jar
 
+RUN cd /usr/share/java/ && \
+    ln -s pdfbox.jar pdfbox-3.0.1.jar && \
+    ln -s fontbox.jar fontbox-3.0.1.jar
+ 
+USER jovyan
+COPY npmrc /home/jovyan/.npmrc
+RUN cat /home/jovyan/.npmrc
+RUN npm install -g npm@10.5.2 corepack configurable-http-proxy | true
+RUN npm cache clean -force | true && \
+    rm -rf ~/.npmrc
+    
+#gcloud setuup
+RUN curl https://dl.google.com/dl/cloudsdk/release/google-cloud-sdk.tar.gz > /tmp/google-cloud-sdk.tar.gz && \
+    tar -C /tmp -xf /tmp/google-cloud-sdk.tar.gz && \
+    /tmp/google-cloud-sdk/install.sh && \
+    rm -rf /tmp/google-cloud-sdk/platform/bundledpythonunix/lib/python3.11/ensurepip/_bundled/*
 
-# Create sudoers directory and set permissions
-RUN mkdir -p /etc/sudoers.d \
-    && chmod 750 /etc/sudoers.d
+ENV PATH $PATH:/tmp/google-cloud-sdk/bin
 
-# Set up sudo for the non-root user
-RUN echo "jupyter ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/jupyter
+USER root
+COPY ./requirements.txt /tmp/requirements.txt
+RUN pip3 install --no-cache-dir -r  /tmp/requirements.txt
+
+# # Create sudoers directory and set permissions
+# RUN mkdir -p /etc/sudoers.d \
+#     && chmod 750 /etc/sudoers.d
+
+# # Set up sudo for the non-root user
+# RUN echo "jupyter ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/jupyter
 
 # Switch to the non-root user
-USER jupyter
+USER jovyan
 
 # Set the working directory
 WORKDIR /home/jupyter
