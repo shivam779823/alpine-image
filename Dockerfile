@@ -31,11 +31,10 @@ RUN cd /usr/share/java/ && \
     ln -s fontbox.jar fontbox-3.0.1.jar
  
 USER jovyan
-COPY npmrc /home/jovyan/.npmrc
-RUN cat /home/jovyan/.npmrc
+# COPY npmrc /home/jovyan/.npmrc
+# RUN cat /home/jovyan/.npmrc
 RUN npm install -g npm@10.5.2 corepack configurable-http-proxy | true
-RUN npm cache clean -force | true && \
-    rm -rf ~/.npmrc
+RUN npm cache clean -force | true 
     
 #gcloud setuup
 RUN curl https://dl.google.com/dl/cloudsdk/release/google-cloud-sdk.tar.gz > /tmp/google-cloud-sdk.tar.gz && \
