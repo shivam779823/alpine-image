@@ -10,8 +10,6 @@ RUN apk --no-cache add \
     npm
 
 
-RUN locale-gen de_DE.UTF-8 && \ 
-    update-locale
     
 # Install Jupyter Notebook and Python dependencies
 
