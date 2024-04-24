@@ -27,7 +27,6 @@ datasketch
 pypdf
 reportlab
 atlassian-python-api
-pillow
 idna
 cryptography
 aiohttp
