@@ -1,7 +1,6 @@
 name: Docker Image push
 
 on:
-  workflow_dispatch: 
   push:
     branches: [ "main" ]
   pull_request:
@@ -12,7 +11,7 @@ env:
   DOCKERHUB_USERNAME: shiva9921 
 jobs:
 
-  build:
+  push:
 
     runs-on: ubuntu-latest
 
