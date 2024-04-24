@@ -1,0 +1,35 @@
+# proxy:
+#   secretToken: "YOUR_SECRET_TOKEN_HERE"
+
+singleuser:
+  image:
+    name: "jupyter/datascience-notebook"
+    tag: "latest"
+  imagePullPolicy: "IfNotPresent"
+
+# hub:
+#   cookieSecret: "YOUR_COOKIE_SECRET_HERE"
+#   db:
+#     pvc:
+#       storageClassName: "YOUR_STORAGE_CLASS_NAME"
+#       accessModes:
+#         - "ReadWriteOnce"
+#       size: "1Gi"
+
+# ingress:
+#   enabled: true
+#   hosts:
+#     - host: "YOUR_HOST_HERE"
+#       paths: []
+#   annotations:
+#     kubernetes.io/ingress.class: "nginx"
+#     nginx.ingress.kubernetes.io/ssl-redirect: "true"
+#     nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+#     nginx.ingress.kubernetes.io/proxy-body-size: "50m"
+#     nginx.ingress.kubernetes.io/rewrite-target: "/"
+
+# auth:
+#   type: "github"
+#   github:
+#     clientId: "YOUR_GITHUB_CLIENT_ID"
+#     clientSecret: "YOUR_GITHUB_CLIENT_SECRET"

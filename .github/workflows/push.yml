@@ -32,20 +32,38 @@ jobs:
         ls
         pwd
         docker build -t ${{env.DOCKERHUB_USERNAME}}/${{env.IMAGE}}:v1.${{github.run_number}} .
-        echo -e "# Image Build🐋S \n ## Version summary\n Image version : pharmaco:v1.${{github.run_number}}"  >> $GITHUB_STEP_SUMMARY
+        echo -e "# Image Build🐋S \n ## Version summary\n Image version : ${{env.DOCKERHUB_USERNAME}}/${{env.IMAGE}}:v1.${{github.run_number}}"  >> $GITHUB_STEP_SUMMARY
+    
+    - name: Image push
+      run: |
+          docker push ${{env.DOCKERHUB_USERNAME}}/${{env.IMAGE}}:v1.${{github.run_number}} 
+
     - name: Run Trivy vulnerability scanner
       uses: aquasecurity/trivy-action@master
       with:
         image-ref: '${{env.DOCKERHUB_USERNAME}}/${{env.IMAGE}}:v1.${{github.run_number}}'
         format: 'sarif'
-        output: 'trivy-results.sarif'
-    
+        output: 'trivy-results.sarif' 
+  
+        
     - name: Upload Trivy scan results to GitHub Security tab
       uses: github/codeql-action/upload-sarif@v3
       with:
         sarif_file: 'trivy-results.sarif'
-    #STEP 6 Push
-    - name: Image push
-      run: |
-        docker push ${{env.DOCKERHUB_USERNAME}}/${{env.IMAGE}}:v1.${{github.run_number}} 
   
+
+
+    - name: Run Trivy scan summary
+      uses: aquasecurity/trivy-action@master
+      with:
+          image-ref: '${{env.DOCKERHUB_USERNAME}}/${{env.IMAGE}}:v1.${{github.run_number}}'
+          format: 'table'
+          ignore-unfixed: true
+          vuln-type: 'os,library'
+          severity: 'CRITICAL,HIGH'
+          output: result.txt 
+  
+    - name: scan summary
+      run: |
+        ls
+        cat result.txt  >> $GITHUB_STEP_SUMMARY

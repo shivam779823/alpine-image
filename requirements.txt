@@ -4,15 +4,15 @@ pillow
 numpy 
 scipy
 pandas
-google
-google-cloud
-google-cloud-bigquery
-google-cloud-bigquery-storage
-google-cloud-secret-manager #==2.0.0
-db-dtypes
-oracledb
+# google
+# google-cloud
+# google-cloud-bigquery
+# google-cloud-bigquery-storage
+# google-cloud-secret-manager #==2.0.0
+# db-dtypes
+# oracledb
 watchdog
-google-cloud-logging
+# google-cloud-logging
 saspy
 GitPython
 pandas-gbq
@@ -26,7 +26,7 @@ attrdict
 datasketch
 pypdf
 reportlab
-atlassian-python-api
+# atlassian-python-api
 idna
 cryptography
 aiohttp
