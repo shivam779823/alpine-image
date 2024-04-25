@@ -4,7 +4,7 @@ proxy:
 singleuser:
   image:
     name: "shiva9921/wolfi-notebook"
-    tag: "v1.7"
+    tag: "v1.9"
 
 
 # hub:

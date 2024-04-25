@@ -48,9 +48,9 @@ ENV PATH $PATH:/tmp/google-cloud-sdk/bin
 WORKDIR /home/jovyan
 
 # Expose the Jupyter Notebook port and start JupyterLab
-EXPOSE 8888
-CMD ["jupyter", "lab", "--ip=0.0.0.0", "--port=8888", "--allow-root"]
-
+# EXPOSE 8888
+# CMD ["jupyter", "lab", "--ip=0.0.0.0", "--port=8888", "--allow-root"]
+CMD ["jupyterhub-singleuser"]
 
 
 
