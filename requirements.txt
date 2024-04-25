@@ -1,9 +1,9 @@
 jupyter-server
-pyarrow
-pillow
-numpy 
-scipy
-pandas
+# pyarrow
+# pillow
+# numpy 
+# scipy
+# pandas
 # google
 # google-cloud
 # google-cloud-bigquery
@@ -13,19 +13,19 @@ pandas
 # oracledb
 watchdog
 # google-cloud-logging
-saspy
-GitPython
-pandas-gbq
-toml
-torch
-scrapy
-pydantic
-plotly
-darts
-attrdict
-datasketch
-pypdf
-reportlab
+# saspy
+# GitPython
+# pandas-gbq
+# toml
+# torch
+# scrapy
+# pydantic
+# plotly
+# darts
+# attrdict
+# datasketch
+# pypdf
+# reportlab
 # atlassian-python-api
 idna
 cryptography

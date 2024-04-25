@@ -3,9 +3,9 @@
 
 singleuser:
   image:
-    name: "jupyter/datascience-notebook"
-    tag: "latest"
-  imagePullPolicy: "IfNotPresent"
+    name: "shiva9921/wolfi-notebook"
+    tag: "v1.5"
+
 
 # hub:
 #   cookieSecret: "YOUR_COOKIE_SECRET_HERE"
