@@ -9,6 +9,7 @@ RUN apk --no-cache add \
     py3-pip \
     git \
     bash \
+    nodejs \
     npm \
     curl \
     && rm -rf /var/cache/apk/*
