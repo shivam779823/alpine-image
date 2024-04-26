@@ -53,7 +53,7 @@ WORKDIR /home/jovyan
 # EXPOSE 8888
 # CMD ["jupyter", "lab", "--ip=0.0.0.0", "--port=8888", "--allow-root"]
 # CMD ["jupyterhub-singleuser"]
-CMD ["jupyter-server"]
+CMD ["jupyter-lab"]
 
 
 
