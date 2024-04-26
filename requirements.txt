@@ -1,37 +1,38 @@
 jupyter-server
-pyarrow
-pillow
-pandas
-google
-google-cloud
-google-cloud-bigquery
-google-cloud-bigquery-storage
-google-cloud-secret-manager #==2.0.0
-db-dtypes
-oracledb
+# pyarrow
+# pillow
+# numpy 
+# scipy
+# pandas
+# google
+# google-cloud
+# google-cloud-bigquery
+# google-cloud-bigquery-storage
+# google-cloud-secret-manager #==2.0.0
+# db-dtypes
+# oracledb
 watchdog
-google-cloud-logging
-saspy
-GitPython
-pandas-gbo
-toml
-gcsts
-torch
-scrapy
-pydantic
-plotly
-darts
-attrdict
-datasketch
-pypdf
-reportlab
-atlassian-python-api
-pillow
+# google-cloud-logging
+# saspy
+# GitPython
+# pandas-gbq
+# toml
+# torch
+# scrapy
+# pydantic
+# plotly
+# darts
+# attrdict
+# datasketch
+# pypdf
+# reportlab
+# atlassian-python-api
 idna
 cryptography
 aiohttp
 grpcio
-jupyter-Isp
+jupyter-lsp
+
 
 
 
