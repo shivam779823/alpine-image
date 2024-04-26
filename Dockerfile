@@ -17,8 +17,8 @@ RUN apk --no-cache add \
 # Install JupyterLab and Jupyter Notebook, add a non-root user, and setup Apache PDFBox jars
 RUN pip3 install --no-cache-dir \
     # jupyterhub \
-    # jupyterlab \
-    'jupyterhub==4.*' \
+    jupyterlab \
+    # 'jupyterhub==4.*' \
     'notebook==7.*' && \
     adduser -D jovyan && \
     mkdir -p /usr/share/java/ && \
@@ -52,7 +52,8 @@ WORKDIR /home/jovyan
 # Expose the Jupyter Notebook port and start JupyterLab
 # EXPOSE 8888
 # CMD ["jupyter", "lab", "--ip=0.0.0.0", "--port=8888", "--allow-root"]
-CMD ["jupyterhub-singleuser"]
+# CMD ["jupyterhub-singleuser"]
+CMD ["jupyter-server"]
 
 
 
