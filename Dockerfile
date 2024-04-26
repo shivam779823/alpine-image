@@ -16,6 +16,7 @@ RUN apk --no-cache add \
 
 # Install JupyterLab and Jupyter Notebook, add a non-root user, and setup Apache PDFBox jars
 RUN pip3 install --no-cache-dir \
+    jupyterhub \
     jupyterlab \
     notebook && \
     adduser -D jovyan && \
